@@ -21,7 +21,9 @@ export default {
     }
   ],
   plugins: [
-    external(),
+    external([
+      'react'
+    ]),
     postcss(),
     babel({
       exclude: 'node_modules/**'
