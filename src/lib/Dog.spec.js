@@ -5,6 +5,6 @@ import Dog from './Dog'
 
 describe('Dog', () => {
   it('barks', () => {
-
+    mount(<Dog />)
   })
 })
