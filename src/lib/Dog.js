@@ -4,7 +4,7 @@ import './dog-style.css';
 
 export default function Dog() {
   return (
-    <div class='dog'>
+    <div className='dog'>
       <img alt='dog' src={dog} />
     </div>
   );

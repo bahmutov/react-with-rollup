@@ -1,12 +1,26 @@
-A template for creating your react package.
+# react-with-rollup
+> React application bundled using Rollup and with component tests using [cypress-react-unit-test](https://github.com/bahmutov/cypress-react-unit-test).
 
-#### Guide
+Code is bundled using [rollup.config.js](rollup.config.js) file. Component tests point at that file in [cypress/plugins/index.js](cypress/plugins/index.js) file.
 
-- Replace the content in src/lib with your own component or library.
-- Test run your library by importing in `App.js` and running `npm start`.
-- Specify entry file in rollup's config input property (`rollup.config.js`).
-- Run `npm run build` to bundle.
-- run `npm link` and `npm link <package-name>` from the root of your project to test bundle.
-- Test run your bundle by importing into `App.js` from the package name and running `npm start`.
+```js
+const rollupPreprocessor = require('@bahmutov/cy-rollup')
+module.exports = (on, config) => {
+  on('file:preprocessor', rollupPreprocessor())
+}
+```
 
-To learn more. Read the [article](https://dev.to/emeka/creating-and-testing-a-react-package-with-cra-and-rollup-5a4l)
+A component test [src/lib/Dog.spec.js](src/lib/Dog.spec.js) mounts `<Dog />`
+
+```js
+import {mount} from 'cypress-react-unit-test'
+import Dog from './Dog'
+it('barks', () => {
+  mount(<Dog />)
+  cy.get('img[alt=dog]').should('be.visible')
+})
+```
+
+![Test screenshot](images/dog.png)
+
+Original repo forked from [codenaz/create-react-package-tutorial](https://github.com/codenaz/create-react-package-tutorial)
